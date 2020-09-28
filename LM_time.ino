@@ -12,23 +12,15 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 long now = millis();
 long lastMeasure = 0;
-#ifdef ESP32
-#include <WiFi.h>
-#include <HTTPClient.h>
-#else
-#include <ESP8266HTTPClient.h>
-#include <ESP8266WiFi.h>
-#include <WiFiClient.h>
-#endif
-const char* ssid = "AUKCSC_SMARTOFFICE";
-const char* password = "PASSWORD2020";
+const char* ssid = "ssid";
+const char* password = "psswd";
 String payload;
-const char* host = "http://192.168.1.1/gettime.php";
-const char* serverName = "http://192.168.1.1/post-esp-data.php";
-const char* cloudserverName = "http://52.237.118.211:8000/iotdevicedata/LM";
-String apiKeyValue = "tPmAT5Ab3j7F9";
-String productcode = "AukproDevice11029";
-String uniquekey = "!AiOtAtAuKpRoLm01";
+const char* host = "0.0.0.0:0000/myfile";
+const char* serverName = "0.0.0.0:0000/myfile";
+const char* cloudserverName = "0.0.0.0:0000/myfile";
+String apiKeyValue = "**********";
+String productcode = "************";
+String uniquekey = "**********";
 String modelname = "LM";
 int outputpin= A0;
 float millivolts;
@@ -100,7 +92,6 @@ void server() {
       Serial.print("Error code: ");
       Serial.println(httpResponseCode);
     }
-    // Free resources
     http.end();
   }
   else {
